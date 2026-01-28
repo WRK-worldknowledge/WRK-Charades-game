@@ -1,0 +1,27 @@
+
+body{
+ margin:0;
+ font-family:Arial, sans-serif;
+ background:#111;
+ color:white;
+ text-align:center;
+}
+.logo{max-width:160px;margin:20px auto;}
+h1{font-size:28px;margin-bottom:8px;}
+button{
+ padding:14px 24px;
+ margin:6px;
+ background:#b00020;
+ color:white;
+ border:none;
+ border-radius:8px;
+ font-size:16px;
+}
+.startBtn{font-size:20px;margin-top:14px;}
+.hidden{display:none;}
+#modules label{display:block;margin:6px;font-size:16px;}
+#code{font-size:120px;font-weight:bold;margin-top:40px;}
+#timer{font-size:20px;margin-top:10px;}
+.flash-good{background:#1f8f3a !important;}
+.flash-bad{background:#a00000 !important;}
+#hint{font-size:42px;padding:40px;}

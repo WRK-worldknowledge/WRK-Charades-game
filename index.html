@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>WRK Airport Codes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="start">
+  <img src="logo.png" class="logo">
+  <h1>WRK Airport Codes</h1>
+  <h3>Game Type</h3>
+  <label><input type="radio" name="gameType" checked onclick="setGameType('code-to-city')"> Guess the city</label><br>
+  <label><input type="radio" name="gameType" onclick="setGameType('city-to-code')"> Guess the IATA code</label>
+  <h3>Mode</h3>
+  <button onclick="setMode('train')">Training</button>
+  <button onclick="setMode('exam')">Exam</button>
+  <div id="modules"></div>
+  <button class="startBtn" onclick="startGame()">Start</button>
+</div>
+
+<div id="game" class="hidden">
+  <div id="timer"></div>
+  <div id="code"></div>
+</div>
+
+<div id="hint" class="hidden"></div>
+
+<div id="end" class="hidden">
+  <h2>Time's up!</h2>
+  <p id="score"></p>
+  <button onclick="resetGame()">Restart</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
