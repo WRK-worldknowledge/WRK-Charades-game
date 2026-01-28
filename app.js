@@ -116,33 +116,34 @@ function stopTilt(){
 }
 
 
+let tiltLocked = false;
+
 function handleTilt(e){
  if(!tiltActive) return;
 
- const gamma = e.gamma; // gebruik links/rechts as i.p.v. beta
- if(gamma === null) return;
+ const beta = e.beta; // terug naar meest stabiele as
+ if(beta === null) return;
 
- // Drempels afgestemd op telefoon tegen voorhoofd (landscape)
- const FORWARD = -18;   // voorover = goed
- const BACK = 18;       // achterover = skip
+ const FORWARD = -22;   // duidelijk voorover
+ const BACK = 22;       // duidelijk achterover
  const NEUTRAL_MIN = -6;
  const NEUTRAL_MAX = 6;
 
- // Reset alleen als hij echt neutraal is
- if(gamma > NEUTRAL_MIN && gamma < NEUTRAL_MAX){
-   tiltState = 'neutral';
+ // Reset lock pas als hij echt neutraal is
+ if(beta > NEUTRAL_MIN && beta < NEUTRAL_MAX){
+   tiltLocked = false;
    return;
  }
 
- // Voorover = goed
- if(gamma < FORWARD && tiltState === 'neutral'){
-   tiltState = 'forward';
+ // Trigger goed
+ if(beta < FORWARD && !tiltLocked){
+   tiltLocked = true;
    good();
  }
 
- // Achterover = skip
- else if(gamma > BACK && tiltState === 'neutral'){
-   tiltState = 'back';
+ // Trigger fout
+ else if(beta > BACK && !tiltLocked){
+   tiltLocked = true;
    skip();
  }
 }
