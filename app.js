@@ -107,25 +107,31 @@ function initTilt(){
 }
 
 function handleTilt(e){
- const beta=e.beta;
- if(beta===null) return;
+ const gamma = e.gamma; // gebruik links/rechts as i.p.v. beta
+ if(gamma === null) return;
 
- const FORWARD=-20;
- const BACK=20;
- const NEUTRAL_MIN=-8;
- const NEUTRAL_MAX=8;
+ // Drempels afgestemd op telefoon tegen voorhoofd (landscape)
+ const FORWARD = -18;   // voorover = goed
+ const BACK = 18;       // achterover = skip
+ const NEUTRAL_MIN = -6;
+ const NEUTRAL_MAX = 6;
 
- if(beta>NEUTRAL_MIN && beta<NEUTRAL_MAX){
-   tiltState='neutral';
+ // Reset alleen als hij echt neutraal is
+ if(gamma > NEUTRAL_MIN && gamma < NEUTRAL_MAX){
+   tiltState = 'neutral';
    return;
  }
 
- if(beta<FORWARD && tiltState==='neutral'){
-   tiltState='forward';
+ // Voorover = goed
+ if(gamma < FORWARD && tiltState === 'neutral'){
+   tiltState = 'forward';
    good();
  }
- else if(beta>BACK && tiltState==='neutral'){
-   tiltState='back';
+
+ // Achterover = skip
+ else if(gamma > BACK && tiltState === 'neutral'){
+   tiltState = 'back';
    skip();
  }
 }
+
