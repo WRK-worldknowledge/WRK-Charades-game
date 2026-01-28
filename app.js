@@ -88,6 +88,8 @@ function skip(){
 
 function end(){
  clearInterval(timer);
+ stopTilt();
+
  document.getElementById('game').classList.add('hidden');
  document.getElementById('end').classList.remove('hidden');
  document.getElementById('score').innerText=`Final score: ${score}`;
@@ -102,11 +104,21 @@ function resetGame(){
  document.getElementById('start').classList.remove('hidden');
 }
 
+let tiltActive = false;
+
 function initTilt(){
+ tiltActive = true;
  window.addEventListener("deviceorientation", handleTilt, true);
 }
 
+function stopTilt(){
+ tiltActive = false;
+}
+
+
 function handleTilt(e){
+ if(!tiltActive) return;
+
  const gamma = e.gamma; // gebruik links/rechts as i.p.v. beta
  if(gamma === null) return;
 
